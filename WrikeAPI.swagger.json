@@ -1,0 +1,3290 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Wrike",
+    "description": "",
+    "version": "1.0"
+  },
+  "host": "www.wrike.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/api/v4/spaces": {},
+    "/api/v4/folders/{folderId}/folders": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "children"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "project": {
+                        "type": "object",
+                        "properties": {
+                          "authorId": {
+                            "type": "string",
+                            "description": "authorId"
+                          },
+                          "ownerIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "ownerIds"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "status"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "startDate"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "endDate"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "createdDate"
+                          }
+                        },
+                        "description": "project"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Folder Tree From Folder",
+        "operationId": "GetFolderTreeFromFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "descendants",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "childIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "workflowId": {
+                        "type": "string",
+                        "description": "workflowId"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      },
+                      "project": {
+                        "type": "object",
+                        "properties": {
+                          "authorId": {
+                            "type": "string",
+                            "description": "authorId"
+                          },
+                          "ownerIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "ownerIds"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "status"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "startDate"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "endDate"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "createdDate"
+                          }
+                        },
+                        "description": "project"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Folder",
+        "operationId": "CreateFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customFields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/folders/{folderId}/tasks": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "attachmentCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "attachmentCount"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {},
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {},
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "GetTasks",
+        "operationId": "GetTasks",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "descendants",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "subTasks",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "nextPageToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "duration"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "start"
+                          },
+                          "due": {
+                            "type": "string",
+                            "description": "due"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "attachmentCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "attachmentCount"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "followedByMe": {
+                        "type": "boolean",
+                        "description": "followedByMe"
+                      },
+                      "followerIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "followerIds"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Task",
+        "operationId": "CreateTask",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "html"
+          },
+          {
+            "name": "customFields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dates",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/spaces/{spaceId}/folders": {},
+    "/api/v4/folders": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "duration"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "start"
+                          },
+                          "due": {
+                            "type": "string",
+                            "description": "due"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "attachmentCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "attachmentCount"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Folder Tree",
+        "operationId": "GetFolderTree",
+        "parameters": []
+      }
+    },
+    "/api/v4/customfields": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "settings": {
+                        "type": "object",
+                        "properties": {
+                          "inheritanceType": {
+                            "type": "string",
+                            "description": "inheritanceType"
+                          },
+                          "decimalPlaces": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "decimalPlaces"
+                          },
+                          "useThousandsSeparator": {
+                            "type": "boolean",
+                            "description": "useThousandsSeparator"
+                          },
+                          "aggregation": {
+                            "type": "string",
+                            "description": "aggregation"
+                          }
+                        },
+                        "description": "settings"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Custom Fields",
+        "parameters": [],
+        "operationId": "GetCustomFields"
+      }
+    },
+    "/api/v4/workflows": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "name"
+                      },
+                      "standard": {
+                        "type": "boolean",
+                        "description": "standard"
+                      },
+                      "hidden": {
+                        "type": "boolean",
+                        "description": "hidden"
+                      },
+                      "customStatuses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "name"
+                            },
+                            "standardName": {
+                              "type": "boolean",
+                              "description": "standardName"
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "color"
+                            },
+                            "standard": {
+                              "type": "boolean",
+                              "description": "standard"
+                            },
+                            "group": {
+                              "type": "string",
+                              "description": "group"
+                            },
+                            "hidden": {
+                              "type": "boolean",
+                              "description": "hidden"
+                            }
+                          }
+                        },
+                        "description": "customStatuses"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Workflows",
+        "operationId": "GetWorkflows",
+        "parameters": []
+      }
+    },
+    "/api/v4/customfields/{customfieldId}": {},
+    "/api/v4/folders/{folderId}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "color": {
+                        "type": "string",
+                        "description": "color"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "workflowId": {
+                        "type": "string",
+                        "description": "workflowId"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      },
+                      "project": {
+                        "type": "object",
+                        "properties": {
+                          "authorId": {
+                            "type": "string",
+                            "description": "authorId"
+                          },
+                          "ownerIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "ownerIds"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "status"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "startDate"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "endDate"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "createdDate"
+                          }
+                        },
+                        "description": "project"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "GetFolder",
+        "operationId": "GetFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "workflowId": {
+                        "type": "string",
+                        "description": "workflowId"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      },
+                      "project": {
+                        "type": "object",
+                        "properties": {
+                          "authorId": {
+                            "type": "string",
+                            "description": "authorId"
+                          },
+                          "ownerIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "ownerIds"
+                          },
+                          "customStatusId": {
+                            "type": "string",
+                            "description": "customStatusId"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "startDate"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "endDate"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "createdDate"
+                          }
+                        },
+                        "description": "project"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete Folder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Move folder and all descendant folders and tasks to Recycle Bin unless they have parents outside of deletion scope.",
+        "operationId": "DeleteFolder"
+      },
+      "put": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "workflowId": {
+                        "type": "string",
+                        "description": "workflowId"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      },
+                      "project": {
+                        "type": "object",
+                        "properties": {
+                          "authorId": {
+                            "type": "string",
+                            "description": "authorId"
+                          },
+                          "ownerIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "ownerIds"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "status"
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "startDate"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "endDate"
+                          },
+                          "createdDate": {
+                            "type": "string",
+                            "description": "createdDate"
+                          }
+                        },
+                        "description": "project"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ModifyFolder",
+        "operationId": "ModifyFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "html"
+          },
+          {
+            "name": "customFields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "addParents",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "removeParents",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "addShareds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "removeShareds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/copy_folder/{folderId}": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "workflowId": {
+                        "type": "string",
+                        "description": "workflowId"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {},
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {},
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "CopyFolder",
+        "operationId": "CopyFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parent",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/tasks/{taskId}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "duration"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "start"
+                          },
+                          "due": {
+                            "type": "string",
+                            "description": "due"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "followedByMe": {
+                        "type": "boolean",
+                        "description": "followedByMe"
+                      },
+                      "followerIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "followerIds"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "GetTasksByTask",
+        "operationId": "GetTasksByTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "duration"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "start"
+                          },
+                          "due": {
+                            "type": "string",
+                            "description": "due"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "attachmentCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "attachmentCount"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "followedByMe": {
+                        "type": "boolean",
+                        "description": "followedByMe"
+                      },
+                      "followerIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "followerIds"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ModifyTasks",
+        "operationId": "ModifyTasks",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "html"
+          },
+          {
+            "name": "addParents",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "removeParents",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "addResponsibles",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "removeResponsibles",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customFields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dates",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/data_export": {},
+    "/api/v4/groups": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "memberIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "memberIds"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "avatarUrl": {
+                        "type": "string",
+                        "description": "avatarUrl"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Query Groups",
+        "operationId": "QueryGroups",
+        "parameters": []
+      }
+    },
+    "/api/v4/users/{userId}": {},
+    "/api/v4/users/contacts": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "firstName": {
+                        "type": "string",
+                        "description": "firstName"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "description": "lastName"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      },
+                      "profiles": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "accountId": {
+                              "type": "string",
+                              "description": "accountId"
+                            },
+                            "role": {
+                              "type": "string",
+                              "description": "role"
+                            },
+                            "external": {
+                              "type": "boolean",
+                              "description": "external"
+                            },
+                            "admin": {
+                              "type": "boolean",
+                              "description": "admin"
+                            },
+                            "owner": {
+                              "type": "boolean",
+                              "description": "owner"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "email"
+                            }
+                          }
+                        },
+                        "description": "profiles"
+                      },
+                      "avatarUrl": {
+                        "type": "string",
+                        "description": "avatarUrl"
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "description": "timezone"
+                      },
+                      "locale": {
+                        "type": "string",
+                        "description": "locale"
+                      },
+                      "deleted": {
+                        "type": "boolean",
+                        "description": "deleted"
+                      },
+                      "memberIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "memberIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "me": {
+                        "type": "boolean",
+                        "description": "me"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "phone"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "GetContacts",
+        "operationId": "GetContacts",
+        "parameters": [
+          {
+            "name": "me",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "/api/v4/comments": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "authorId": {
+                        "type": "string",
+                        "description": "authorId"
+                      },
+                      "text": {
+                        "type": "string",
+                        "description": "text"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "taskId": {
+                        "type": "string",
+                        "description": "taskId"
+                      },
+                      "folderId": {
+                        "type": "string",
+                        "description": "folderId"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Comments",
+        "operationId": "GetComments",
+        "description": "Get all comments in current account.",
+        "parameters": []
+      }
+    },
+    "/www.wrike.com/api/v4/access-roles": {},
+    "/api/v4/access_roles": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Access Roles",
+        "operationId": "GetAccessRoles",
+        "parameters": []
+      }
+    },
+    "/api/v4/workflows/{workflowId}": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "name"
+                      },
+                      "standard": {
+                        "type": "boolean",
+                        "description": "standard"
+                      },
+                      "hidden": {
+                        "type": "boolean",
+                        "description": "hidden"
+                      },
+                      "customStatuses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "name"
+                            },
+                            "standardName": {
+                              "type": "boolean",
+                              "description": "standardName"
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "color"
+                            },
+                            "standard": {
+                              "type": "boolean",
+                              "description": "standard"
+                            },
+                            "group": {
+                              "type": "string",
+                              "description": "group"
+                            },
+                            "hidden": {
+                              "type": "boolean",
+                              "description": "hidden"
+                            }
+                          }
+                        },
+                        "description": "customStatuses"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Modify Workflow",
+        "operationId": "ModifyWorkflow",
+        "description": "Update workflow or custom statuses.",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/folder_blueprints": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "childIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "childIds"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "summary": "Get Folder Blueprints tree",
+        "operationId": "GetFolderBlueprintstree"
+      }
+    },
+    "/api/v4/folder_blueprints/{folder_blueprintId}/launch_async": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "progressPercent": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "progressPercent"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Folder Blueprint Launch Async",
+        "operationId": "FolderBlueprintLaunchAsync",
+        "parameters": [
+          {
+            "name": "folder_blueprintId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderBlueprintstree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "parent",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "titlePrefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "copyDescriptions",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "notifyResponsibles",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "copyResponsibles",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "copyCustomFields",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "copyAttachments",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "rescheduleDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "rescheduleMode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Start",
+              "End"
+            ]
+          }
+        ]
+      }
+    },
+    "/async_job/{async_jobId}": {},
+    "/api/v4/async_job/{async_jobId}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "progressPercent": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "progressPercent"
+                      },
+                      "totalCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "totalCount"
+                      },
+                      "processedCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "processedCount"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      },
+                      "result": {
+                        "type": "object",
+                        "properties": {
+                          "folderId": {
+                            "type": "string",
+                            "description": "folderId"
+                          }
+                        },
+                        "description": "result"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get async job",
+        "operationId": "Getasyncjob",
+        "parameters": [
+          {
+            "name": "async_jobId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/tasks/{taskId}/comments": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Create Comment On Task",
+        "operationId": "CreateCommentOnTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "plainText",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ]
+      }
+    },
+    "/api/v4/folders/{folderId}/comments": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Create Comment On Folder",
+        "operationId": "CreateCommentOnFolder",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "plainText",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ]
+      }
+    },
+    "/api/v4/tasks": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "GetAllTasks",
+        "operationId": "GetAllTasks",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/tasks/{taskid}/attachments": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Add Attachment To Task",
+        "operationId": "AddAttachmentToTask",
+        "parameters": [
+          {
+            "name": "taskid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/octet-stream",
+            "x-ms-visibility": "internal"
+          },
+          {
+            "name": "X-Requested-With",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "XMLHttpRequest",
+            "x-ms-visibility": "internal"
+          },
+          {
+            "name": "X-File-Name",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "",
+              "format": "binary"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v4/folders/{folderId}/webhooks": {
+      "x-ms-notification-content": {
+        "schema": {},
+        "description": "Fired when a folder is changed"
+      },
+      "post": {
+        "responses": {},
+        "x-ms-trigger": "single",
+        "summary": "On Folder Change",
+        "operationId": "OnFolderChange",
+        "parameters": [
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetFolderTree",
+              "value-path": "id",
+              "value-collection": "data",
+              "value-title": "title"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookUrl": {
+                  "type": "string",
+                  "description": "hookUrl",
+                  "title": "",
+                  "x-ms-notification-url": true,
+                  "x-ms-visibility": "internal"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "events"
+                },
+                "recursive": {
+                  "type": "boolean",
+                  "description": "recursive",
+                  "title": "",
+                  "x-ms-visibility": "advanced",
+                  "default": true
+                }
+              },
+              "required": [
+                "hookUrl"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/api/v4/webhooks": {
+      "x-ms-notification-content": {
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "taskId": {
+                "type": "string",
+                "description": "taskId"
+              },
+              "webhookId": {
+                "type": "string",
+                "description": "webhookId"
+              },
+              "eventAuthorId": {
+                "type": "string",
+                "description": "eventAuthorId"
+              },
+              "eventType": {
+                "type": "string",
+                "description": "eventType"
+              },
+              "lastUpdatedDate": {
+                "type": "string",
+                "description": "lastUpdatedDate"
+              }
+            }
+          }
+        },
+        "description": "Fired when a folder is changed account bound"
+      },
+      "post": {
+        "responses": {},
+        "x-ms-trigger": "single",
+        "summary": "On Account Change",
+        "operationId": "OnAccountChange",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookUrl": {
+                  "type": "string",
+                  "description": "hookUrl",
+                  "title": "",
+                  "x-ms-notification-url": true,
+                  "x-ms-visibility": "internal"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "events"
+                },
+                "recursive": {
+                  "type": "boolean",
+                  "description": "recursive",
+                  "title": "",
+                  "x-ms-visibility": "advanced",
+                  "default": true
+                }
+              },
+              "required": [
+                "hookUrl"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth2_auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://login.wrike.com/oauth2/authorize/v4",
+      "tokenUrl": "https://login.wrike.com/oauth2/token",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "oauth2_auth": []
+    }
+  ],
+  "tags": []
+}
