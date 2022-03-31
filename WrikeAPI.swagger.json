@@ -482,7 +482,7 @@
             }
           }
         },
-        "summary": "GetTasks",
+        "summary": "Get Tasks",
         "operationId": "GetTasks",
         "parameters": [
           {
@@ -532,8 +532,15 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "array"
           }
-        ]
+        ],
+        "description": "Collects all tasks from a wrike folder or project"
       },
       "post": {
         "responses": {
@@ -769,6 +776,12 @@
             "format": "html"
           },
           {
+            "name": "customStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "customFields",
             "in": "query",
             "required": false,
@@ -779,11 +792,16 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "responsibles",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ]
       }
     },
-    "/api/v4/spaces/{spaceId}/folders": {},
     "/api/v4/folders": {
       "get": {
         "responses": {
@@ -1147,7 +1165,6 @@
         "parameters": []
       }
     },
-    "/api/v4/customfields/{customfieldId}": {},
     "/api/v4/folders/{folderId}": {
       "get": {
         "responses": {
@@ -2059,6 +2076,219 @@
           }
         ]
       },
+      "delete": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "briefDescription": {
+                        "type": "string",
+                        "description": "briefDescription"
+                      },
+                      "parentIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "parentIds"
+                      },
+                      "superParentIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superParentIds"
+                      },
+                      "sharedIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "sharedIds"
+                      },
+                      "responsibleIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "responsibleIds"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "importance": {
+                        "type": "string",
+                        "description": "importance"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "description": "createdDate"
+                      },
+                      "updatedDate": {
+                        "type": "string",
+                        "description": "updatedDate"
+                      },
+                      "dates": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "type"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "duration"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "start"
+                          },
+                          "due": {
+                            "type": "string",
+                            "description": "due"
+                          }
+                        },
+                        "description": "dates"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "scope"
+                      },
+                      "authorIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "authorIds"
+                      },
+                      "customStatusId": {
+                        "type": "string",
+                        "description": "customStatusId"
+                      },
+                      "hasAttachments": {
+                        "type": "boolean",
+                        "description": "hasAttachments"
+                      },
+                      "attachmentCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "attachmentCount"
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "description": "permalink"
+                      },
+                      "priority": {
+                        "type": "string",
+                        "description": "priority"
+                      },
+                      "followedByMe": {
+                        "type": "boolean",
+                        "description": "followedByMe"
+                      },
+                      "followerIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "followerIds"
+                      },
+                      "superTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "superTaskIds"
+                      },
+                      "subTaskIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "subTaskIds"
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {},
+                        "description": "dependencyIds"
+                      },
+                      "metadata": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "key"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "metadata"
+                      },
+                      "customFields": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "value"
+                            }
+                          }
+                        },
+                        "description": "customFields"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete Task",
+        "description": "Delete task by Id.",
+        "operationId": "DeleteTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
       "put": {
         "responses": {
           "default": {
@@ -2401,7 +2631,6 @@
         "parameters": []
       }
     },
-    "/api/v4/users/{userId}": {},
     "/api/v4/users/contacts": {
       "get": {
         "responses": {
@@ -2920,7 +3149,6 @@
         ]
       }
     },
-    "/async_job/{async_jobId}": {},
     "/api/v4/async_job/{async_jobId}": {
       "get": {
         "responses": {
@@ -3139,7 +3367,11 @@
         "description": "Fired when a folder is changed"
       },
       "post": {
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Your server returns this code if it accepts the callback"
+          }
+        },
         "x-ms-trigger": "single",
         "summary": "On Folder Change",
         "operationId": "OnFolderChange",
@@ -3226,7 +3458,11 @@
         "description": "Fired when a folder is changed account bound"
       },
       "post": {
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Your server returns this code if it accepts the callback"
+          }
+        },
         "x-ms-trigger": "single",
         "summary": "On Account Change",
         "operationId": "OnAccountChange",
@@ -3266,6 +3502,88 @@
             }
           }
         ]
+      }
+    },
+    "/api/v4/webhooks/{webhookId}": {
+      "delete": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Delete Webhook",
+        "description": "Deletes webhook by ID.",
+        "operationId": "DeleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/v4/webhooks/": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "kind"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "accountId": {
+                        "type": "string",
+                        "description": "accountId"
+                      },
+                      "hookUrl": {
+                        "type": "string",
+                        "description": "hookUrl"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "status"
+                      },
+                      "folderId": {
+                        "type": "string",
+                        "description": "folderId"
+                      },
+                      "events": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "events"
+                      },
+                      "recursive": {
+                        "type": "boolean",
+                        "description": "recursive"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "summary": "Get Webhooks",
+        "operationId": "GetWebhooks"
       }
     }
   },
