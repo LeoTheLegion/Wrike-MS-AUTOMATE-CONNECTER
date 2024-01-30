@@ -1,9 +1,10 @@
 swagger: '2.0'
 info:
-  version: 1.0.0
+  version: 1.1.0
   title: Wrike
-  description: >-
-    awdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+  description: |-
+    A homebrew Swagger 2 Api for Wrike.
+    Meant for Power Automate.
 host: www.wrike.com
 basePath: /
 schemes:
@@ -19,17 +20,14 @@ paths:
       operationId: GetFolderTreeFromFolder
       parameters:
         - name: permalink
-          default: <string>
           in: query
           type: string
           required: false
         - name: descendants
-          default: <boolean>
           in: query
-          type: string
+          type: boolean
           required: false
         - name: metadata
-          default: <object>
           in: query
           type: string
           required: false
@@ -38,27 +36,36 @@ paths:
           type: string
           required: false
         - name: updatedDate
-          default: <object>
           in: query
           type: string
           required: false
         - name: project
-          default: <boolean>
           in: query
-          type: string
+          type: boolean
           required: false
         - name: plainTextCustomFields
-          default: <boolean>
           in: query
-          type: string
+          type: boolean
           required: false
         - name: fields
-          default: <array>
           in: query
-          type: string
+          type: array
           required: false
+          items:
+            type: string
+            enum:
+              - metadata
+              - hasAttachments
+              - attachmentCount
+              - description
+              - briefDescription
+              - customFields
+              - customColumnIds
+              - superParentIds
+              - space
+              - contractType
+              - customItemTypeId
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -132,22 +139,18 @@ paths:
       operationId: CreateFolder
       parameters:
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: customFields
-          default: <string>
           in: query
           type: string
           required: true
         - name: project
-          default: <string>
           in: query
-          type: string
+          type: boolean
           required: true
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -267,42 +270,54 @@ paths:
       operationId: GetTasks
       parameters:
         - name: descendants
-          default: <boolean>
           in: query
-          type: string
+          type: boolean
           required: true
         - name: subTasks
-          default: <boolean>
           in: query
-          type: string
+          type: boolean
           required: true
         - name: pageSize
-          default: <number>
+          default: 1000
           in: query
-          type: string
+          type: integer
           required: true
         - name: nextPageToken
-          default: <string>
           in: query
           type: string
           required: true
         - name: fields
-          default: <string>
           in: query
-          type: string
+          type: array
           required: true
+          items:
+            type: string
+            enum:
+              - metadata
+              - hasAttachments
+              - attachmentCount
+              - description
+              - briefDescription
+              - customFields
+              - customColumnIds
+              - superParentIds
+              - space
+              - contractType
+              - customItemTypeId
         - name: customField
-          default: <string>
           in: query
           type: string
           required: true
         - name: status
-          default: ''
           in: query
           type: string
+          enum:
+            - Active
+            - Completed
+            - Deferred
+            - Cancelled
           required: true
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -400,37 +415,30 @@ paths:
       operationId: CreateTask
       parameters:
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: description
-          default: <string>
           in: query
           type: string
           required: true
         - name: customStatus
-          default: <string>
           in: query
           type: string
           required: true
         - name: customFields
-          default: <string>
           in: query
           type: string
           required: true
         - name: dates
-          default: <string>
           in: query
           type: string
           required: true
         - name: responsibles
-          default: <string>
           in: query
           type: string
           required: true
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -585,7 +593,6 @@ paths:
       operationId: CreateCommentOnFolder
       parameters:
         - name: text
-          default: <string>
           in: query
           type: string
           required: true
@@ -595,7 +602,6 @@ paths:
           type: string
           required: true
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -618,7 +624,6 @@ paths:
       operationId: OnFolderChange
       parameters:
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -640,6 +645,51 @@ paths:
                 type: array
                 items:
                   type: string
+                  enum:
+                    - TaskCreated
+                    - TaskDeleted
+                    - TaskTitleChanged
+                    - TaskImportanceChanged
+                    - TaskStatusChanged
+                    - TaskDatesChanged
+                    - TaskParentsAdded
+                    - TaskParentsRemoved
+                    - TaskResponsiblesAdded
+                    - TaskResponsiblesRemoved
+                    - TaskSharedsAdded
+                    - TaskSharedsRemoved
+                    - TaskDescriptionChanged
+                    - TaskCustomFieldChanged
+                    - AttachmentAdded
+                    - AttachmentDeleted
+                    - CommentAdded
+                    - CommentDeleted
+                    - CreateFromBlueprintCompleted
+                    - TimelogChanged
+                    - FolderCreated
+                    - FolderDeleted
+                    - FolderTitleChanged
+                    - FolderParentsAdded
+                    - FolderParentsRemoved
+                    - FolderSharedsAdded
+                    - FolderSharedsRemoved
+                    - FolderDescriptionChanged
+                    - FolderCommentAdded
+                    - FolderCommentDeleted
+                    - FolderAttachmentAdded
+                    - FolderAttachmentDeleted
+                    - FolderCustomFieldChanged
+                    - ProjectDatesChanged
+                    - ProjectOwnersAdded
+                    - ProjectOwnersRemoved
+                    - ProjectStatusChanged
+                    - TaskApprovalStatusChanged
+                    - TaskApprovalDecisionChanged
+                    - TaskApprovalDecisionReset
+                    - FolderApprovalStatusChanged
+                    - FolderApprovalDecisionChanged
+                    - FolderApprovalDecisionReset
+                    - WorkItemTypeChanged
                 description: events
               recursive:
                 type: boolean
@@ -663,9 +713,10 @@ paths:
       operationId: GetFolder
       parameters:
         - name: folderId
-          default: <string>
           in: path
-          type: string
+          type: array
+          items:
+            type: string
           required: true
         - name: Accept
           in: header
@@ -795,7 +846,6 @@ paths:
       operationId: DeleteFolder
       parameters:
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -919,49 +969,42 @@ paths:
       operationId: ModifyFolder
       parameters:
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: description
-          default: <string>
           in: query
           type: string
           required: true
         - name: customFields
-          default: <string>
           in: query
           type: string
           required: true
         - name: project
-          default: <string>
           in: query
           type: string
           required: true
         - name: addParents
-          default: <string>
           in: query
           type: string
           required: true
         - name: removeParents
-          default: <string>
           in: query
           type: string
           required: true
         - name: addShareds
-          default: <string>
           in: query
           type: string
           required: true
         - name: removeShareds
-          default: <string>
           in: query
           type: string
           required: true
         - name: folderId
-          default: <string>
           in: path
-          type: string
+          type: array
+          items:
+            type: string
           required: true
         - name: Accept
           in: header
@@ -1089,6 +1132,51 @@ paths:
           type: string
           default: '*/*'
           description: Accept
+        - name: permalink
+          in: query
+          type: string
+        - name: descendants
+          in: query
+          type: boolean
+          required: false
+        - name: metadata
+          in: query
+          type: string
+          required: false
+        - name: customField
+          in: query
+          type: string
+          required: false
+        - name: updatedDate
+          in: query
+          type: string
+          required: false
+        - name: project
+          in: query
+          type: boolean
+          required: false
+        - name: plainTextCustomFields
+          in: query
+          type: boolean
+          required: false
+        - name: fields
+          in: query
+          type: array
+          required: false
+          items:
+            type: string
+            enum:
+              - metadata
+              - hasAttachments
+              - attachmentCount
+              - description
+              - briefDescription
+              - customFields
+              - customColumnIds
+              - superParentIds
+              - space
+              - contractType
+              - customItemTypeId
       responses:
         '500':
           description: '500'
@@ -1296,12 +1384,10 @@ paths:
       operationId: ModifyWorkflow
       parameters:
         - name: customStatus
-          default: <string>
           in: query
           type: string
           required: true
         - name: workflowId
-          default: <string>
           in: path
           type: string
           required: true
@@ -1438,17 +1524,14 @@ paths:
       operationId: CopyFolder
       parameters:
         - name: parent
-          default: <string>
           in: query
           type: string
           required: true
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: folderId
-          default: <string>
           in: path
           type: string
           required: true
@@ -1525,7 +1608,6 @@ paths:
       operationId: CreateCommentOnTask
       parameters:
         - name: text
-          default: <string>
           in: query
           type: string
           required: true
@@ -1535,7 +1617,6 @@ paths:
           type: string
           required: true
         - name: taskId
-          default: <string>
           in: path
           type: string
           required: true
@@ -1558,10 +1639,11 @@ paths:
       operationId: GetTasksByTask
       parameters:
         - name: taskId
-          default: <string>
           in: path
-          type: string
+          type: array
           required: true
+          items:
+            type: string
         - name: Accept
           in: header
           required: true
@@ -1719,7 +1801,6 @@ paths:
       operationId: DeleteTask
       parameters:
         - name: taskId
-          default: <string>
           in: path
           type: string
           required: true
@@ -1863,54 +1944,46 @@ paths:
       operationId: ModifyTasks
       parameters:
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: description
-          default: <string>
           in: query
           type: string
           required: true
         - name: addParents
-          default: <string>
           in: query
           type: string
           required: true
         - name: removeParents
-          default: <string>
           in: query
           type: string
           required: true
         - name: addResponsibles
-          default: <string>
           in: query
           type: string
           required: true
         - name: removeResponsibles
-          default: <string>
           in: query
           type: string
           required: true
         - name: customFields
-          default: <string>
           in: query
           type: string
           required: true
         - name: customStatus
-          default: <string>
           in: query
           type: string
           required: true
         - name: dates
-          default: <string>
           in: query
           type: string
           required: true
         - name: taskId
-          default: <string>
           in: path
-          type: string
+          type: array
+          items:
+            type: string
           required: true
         - name: Accept
           in: header
@@ -2068,7 +2141,6 @@ paths:
       operationId: AddAttachmentToTask
       parameters:
         - name: taskid
-          default: <string>
           in: path
           type: string
           required: true
@@ -2082,7 +2154,6 @@ paths:
           in: header
           required: true
           type: string
-          default: <string>
           description: X-File-Name
         - name: Content-Type
           in: header
@@ -2109,10 +2180,23 @@ paths:
       operationId: GetAllTasks
       parameters:
         - name: fields
-          default: <string>
           in: query
-          type: string
+          type: array
           required: true
+          items:
+            type: string
+            enum:
+              - metadata
+              - hasAttachments
+              - attachmentCount
+              - description
+              - briefDescription
+              - customFields
+              - customColumnIds
+              - superParentIds
+              - space
+              - contractType
+              - customItemTypeId
         - name: Accept
           in: header
           required: true
@@ -2186,7 +2270,6 @@ paths:
       operationId: GetContacts
       parameters:
         - name: me
-          default: <boolean>
           in: query
           type: string
           required: true
@@ -2256,7 +2339,7 @@ paths:
                       type: string
                       description: locale
                     deleted:
-                      type: string
+                      type: boolean
                       description: deleted
                     memberIds:
                       type: array
@@ -2373,17 +2456,14 @@ paths:
       operationId: FolderBlueprintLaunchAsync
       parameters:
         - name: parent
-          default: <string>
           in: query
           type: string
           required: true
         - name: title
-          default: <string>
           in: query
           type: string
           required: true
         - name: titlePrefix
-          default: <string>
           in: query
           type: string
           required: true
@@ -2423,7 +2503,6 @@ paths:
           type: string
           required: true
         - name: folder_blueprintId
-          default: <string>
           in: path
           type: string
           required: true
@@ -2508,7 +2587,6 @@ paths:
       operationId: GetAsyncJob
       parameters:
         - name: async_jobId
-          default: <string>
           in: path
           type: string
           required: true
@@ -2565,7 +2643,6 @@ paths:
       operationId: DeleteWebhook
       parameters:
         - name: webhookId
-          default: <string>
           in: path
           type: string
           required: true
@@ -2605,6 +2682,51 @@ paths:
                 type: array
                 items:
                   type: string
+                  enum:
+                    - TaskCreated
+                    - TaskDeleted
+                    - TaskTitleChanged
+                    - TaskImportanceChanged
+                    - TaskStatusChanged
+                    - TaskDatesChanged
+                    - TaskParentsAdded
+                    - TaskParentsRemoved
+                    - TaskResponsiblesAdded
+                    - TaskResponsiblesRemoved
+                    - TaskSharedsAdded
+                    - TaskSharedsRemoved
+                    - TaskDescriptionChanged
+                    - TaskCustomFieldChanged
+                    - AttachmentAdded
+                    - AttachmentDeleted
+                    - CommentAdded
+                    - CommentDeleted
+                    - CreateFromBlueprintCompleted
+                    - TimelogChanged
+                    - FolderCreated
+                    - FolderDeleted
+                    - FolderTitleChanged
+                    - FolderParentsAdded
+                    - FolderParentsRemoved
+                    - FolderSharedsAdded
+                    - FolderSharedsRemoved
+                    - FolderDescriptionChanged
+                    - FolderCommentAdded
+                    - FolderCommentDeleted
+                    - FolderAttachmentAdded
+                    - FolderAttachmentDeleted
+                    - FolderCustomFieldChanged
+                    - ProjectDatesChanged
+                    - ProjectOwnersAdded
+                    - ProjectOwnersRemoved
+                    - ProjectStatusChanged
+                    - TaskApprovalStatusChanged
+                    - TaskApprovalDecisionChanged
+                    - TaskApprovalDecisionReset
+                    - FolderApprovalStatusChanged
+                    - FolderApprovalDecisionChanged
+                    - FolderApprovalDecisionReset
+                    - WorkItemTypeChanged
                 description: events
               recursive:
                 type: boolean
