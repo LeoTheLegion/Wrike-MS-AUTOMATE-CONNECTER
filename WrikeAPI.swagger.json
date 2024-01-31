@@ -133,6 +133,11 @@ paths:
                           description: completedDate
                       description: project
                 description: data
+      x-ms-openai-data:
+        openai-enabled: false
+        operations:
+          - operationId: GetFolderTreeFromFolder
+            x-ms-require-user-confirmation: false
     post:
       summary: Create Folder
       description: Create Folder
@@ -618,7 +623,11 @@ paths:
             type: object
             properties: {}
   /api/v4/folders/{folderId}/webhooks:
+    x-ms-notification-content:
+      schema: {}
+      description: Fired when a folder is changed
     post:
+      x-ms-trigger: single
       summary: On Folder Change
       description: On Folder Change
       operationId: OnFolderChange
@@ -641,6 +650,8 @@ paths:
               hookUrl:
                 type: string
                 description: hookUrl
+                x-ms-notification-url: true
+                x-ms-visibility: internal
               events:
                 type: array
                 items:
@@ -694,6 +705,8 @@ paths:
               recursive:
                 type: boolean
                 description: recursive
+            required:
+              - hookUrl
             default:
               hookUrl: <string>
               events:
@@ -2659,7 +2672,9 @@ paths:
             type: object
             properties: {}
   /api/v4/webhooks:
+    x-ms-notification-content: {}
     post:
+      x-ms-trigger: single
       summary: On Account Change
       description: On Account Change
       operationId: OnAccountChange
@@ -2678,6 +2693,8 @@ paths:
               hookUrl:
                 type: string
                 description: hookUrl
+                x-ms-notification-url: true
+                x-ms-visibility: internal
               events:
                 type: array
                 items:
@@ -2731,6 +2748,8 @@ paths:
               recursive:
                 type: boolean
                 description: recursive
+            required:
+              - hookUrl
             default:
               hookUrl: <string>
               events:
