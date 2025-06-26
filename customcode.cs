@@ -1,8 +1,17 @@
 // used on FolderBlueprintLaunchAsync, GetFolder, GetTasks, ModifyTasks, TaskBlueprintLaunchAsync
 
+/// <summary>
+/// This script is designed to be used as custom code for a Wrike custom connector in Power Automate.
+/// It intercepts the outgoing request and modifies the URI to handle specific Wrike API requirements,
+/// such as converting comma-separated parameter values into JSON arrays.
+/// </summary>
 public class Script : ScriptBase
 {
-
+    /// <summary>
+    /// The main entry point for the script execution.
+    /// It modifies the request URI and then sends the request to the Wrike API.
+    /// </summary>
+    /// <returns>The HttpResponseMessage from the Wrike API.</returns>
     public override async Task<HttpResponseMessage> ExecuteAsync()
     {
         var strRequestUri = this.Context.Request.RequestUri.AbsoluteUri;
@@ -19,6 +28,13 @@ public class Script : ScriptBase
         return response;
     }
 
+    /// <summary>
+    /// Converts the values of specified query parameters from comma-separated strings to JSON arrays.
+    /// For example, a parameter like "status=Active,Completed" will be converted to "status=["Active","Completed"]".
+    /// </summary>
+    /// <param name="originalUrl">The original request URL.</param>
+    /// <param name="parametersToConvert">An array of query parameter names to convert.</param>
+    /// <returns>The modified URL with converted query parameters.</returns>
     private string ConvertToJSONFields(string originalUrl, params string[] parametersToConvert)
     {
         Uri uri = new Uri(originalUrl);
@@ -50,6 +66,11 @@ public class Script : ScriptBase
         return modifiedUrl;
     }
 
+    /// <summary>
+    /// Removes query parameters that have null or empty values from the URL.
+    /// </summary>
+    /// <param name="originalUrl">The original request URL.</param>
+    /// <returns>The modified URL with null parameters removed.</returns>
     private string RemoveNullParameters(string originalUrl)
     {
         Uri uri = new Uri(originalUrl);
