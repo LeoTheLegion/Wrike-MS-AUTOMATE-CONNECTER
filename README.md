@@ -50,6 +50,7 @@ The custom code in `customcode.cs` performs two main functions:
     - In the **4. Code** section of the custom connector setup, enable the **Code enabled** option.
     - Copy the entire content of the `customcode.cs` file and paste it into the code editor.
     - The class in the script is `Script`, which inherits from `ScriptBase`, so you don't need to change the default class name.
+    - **Important**: This code is specifically designed to work with the following operations: `FolderBlueprintLaunchAsync`, `GetFolder`, `GetTasks`, `ModifyTasks`, and `TaskBlueprintLaunchAsync`. It ensures that the parameters for these operations are correctly formatted before being sent to the Wrike API.
 5.  **Create and Test the Connector**:
     - Click **Create connector**.
     - Once the connector is created, you can test the various actions in the **5. Test** section to ensure it's working correctly.
